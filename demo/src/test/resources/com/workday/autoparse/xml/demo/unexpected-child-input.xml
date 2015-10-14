@@ -1,0 +1,6 @@
+<Child_Model xmlns:wcl="http://www.workday.com/ns/user-interface/2.0"
+             wcl:My_Int="1">
+
+    <Root_Model/>
+
+</Child_Model>

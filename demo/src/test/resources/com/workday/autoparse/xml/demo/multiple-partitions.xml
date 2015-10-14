@@ -1,0 +1,7 @@
+<Root_Model>
+    <This_Package_Model>
+        <Other_Package_Model/>
+    </This_Package_Model>
+    <Partitioned_Model/>
+    <Partitioned_Model2/>
+</Root_Model>

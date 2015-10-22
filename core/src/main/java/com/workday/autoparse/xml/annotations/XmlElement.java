@@ -13,7 +13,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Indicate to the AutoParse framework that a new instance of the target class should be created and
+ * Indicate to the Autoparse framework that a new instance of the target class should be created and
  * inflated from XML elements with the corresponding names.
  *
  * @author nathan.taylor

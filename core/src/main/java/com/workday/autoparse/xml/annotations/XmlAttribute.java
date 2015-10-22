@@ -13,7 +13,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Indicates to the AutoParse framework that the target field should be inflated from an attribute.
+ * Indicates to the Autoparse framework that the target field should be inflated from an attribute.
  * This annotation can also be applied to a setter method. The target method must be non-private and
  * must take exactly one parameter.
  *

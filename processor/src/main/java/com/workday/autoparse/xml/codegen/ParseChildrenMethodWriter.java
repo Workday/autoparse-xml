@@ -195,7 +195,7 @@ class ParseChildrenMethodWriter {
             initializer = "Sets.newTreeSet()";
         } else {
             throw new IllegalArgumentException(
-                    String.format("AutoParse does not know how to instantiate Collection of type "
+                    String.format("Autoparse does not know how to instantiate Collection of type "
                                           + "%s",
                                   type.toString()));
         }
@@ -322,7 +322,7 @@ class ParseChildrenMethodWriter {
         TypeMirror parameterType = collectionType.getTypeArguments().get(0);
         if (!(parameterType instanceof DeclaredType)) {
             String errorMessage =
-                    "AutoParse cannot handle collections parametrised with non-declared types.";
+                    "Autoparse cannot handle collections parametrised with non-declared types.";
             processingEnv.getMessager()
                          .printMessage(Diagnostic.Kind.ERROR, errorMessage, offendingElement);
             Elements elementUtils = processingEnv.getElementUtils();

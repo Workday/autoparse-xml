@@ -13,7 +13,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Indicate to the AutoParse framework that a new instance of the target class should be
+ * Indicate to the Autoparse framework that a new instance of the target class should be
  * instantiated and inflated when unknown XML element tags are encountered. An unknown XML element
  * tag is one that was not declared in any {@link XmlElement} annotations. If the target class
  * contains other parsing annotations (e.g. @{@link XmlChildElement}), they will be honored.

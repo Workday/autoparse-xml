@@ -13,7 +13,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Indicates to the AutoParse framework that the target field should be inflated from a child
+ * Indicates to the Autoparse framework that the target field should be inflated from a child
  * element. The corresponding class (or a subclass) must be annotated with {@link XmlElement}. If
  * the target of this annotation is a {@link java.util.Collection}, then the inflated child object
  * will be added to it.

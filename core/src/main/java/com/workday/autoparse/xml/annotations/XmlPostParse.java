@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 
 /**
  * A method with this annotation will be called immediately after the object has been fully
- * instantiated by the AutoParse framework. The method must take no parameters and must be
+ * instantiated by the Autoparse framework. The method must take no parameters and must be
  * non-private.
  *
  * @author nathan.taylor

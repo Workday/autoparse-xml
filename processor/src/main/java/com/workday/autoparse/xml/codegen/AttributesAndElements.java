@@ -216,7 +216,7 @@ class AttributesAndElements {
 
     private boolean assertMethodHasSingleParameter(ExecutableElement method) {
         if (method.getParameters().size() != 1) {
-            String errorMessage = "AutoParse can only set values on single-parameter methods.";
+            String errorMessage = "Autoparse can only set values on single-parameter methods.";
             processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, errorMessage, method);
             return false;
         }

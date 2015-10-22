@@ -12,9 +12,8 @@ import com.squareup.javawriter.JavaWriter;
 import com.workday.autoparse.xml.parser.ParseException;
 import com.workday.autoparse.xml.parser.XmlElementParser;
 import com.workday.autoparse.xml.parser.XmlStreamReader;
+import com.workday.autoparse.xml.utils.StringUtils;
 import com.workday.meta.MetaTypes;
-
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.math.BigDecimal;

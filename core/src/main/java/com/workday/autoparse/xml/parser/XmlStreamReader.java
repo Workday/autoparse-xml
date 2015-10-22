@@ -7,7 +7,8 @@
 
 package com.workday.autoparse.xml.parser;
 
-import org.apache.commons.lang3.StringUtils;
+import com.workday.autoparse.xml.utils.StringUtils;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 

@@ -16,9 +16,8 @@ import com.workday.autoparse.xml.annotations.XmlParserPartition;
 import com.workday.autoparse.xml.annotations.XmlPostParse;
 import com.workday.autoparse.xml.annotations.XmlTextContent;
 import com.workday.autoparse.xml.annotations.XmlUnknownElement;
+import com.workday.autoparse.xml.utils.StringUtils;
 import com.workday.meta.PackageTree;
-
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;

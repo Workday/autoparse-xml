@@ -16,7 +16,6 @@ version = VERSION_NAME
 
 dependencies {
     compile 'com.google.guava:guava:18.0'
-    compile 'org.apache.commons:commons-lang3:3.3.2'
     compile 'com.workday:metajava:1.0'
     provided('org.ogce:xpp3:1.1.6')
 }

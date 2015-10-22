@@ -10,8 +10,7 @@ package com.workday.autoparse.xml.parser;
 import com.google.common.base.Function;
 import com.google.common.collect.Maps;
 import com.workday.autoparse.xml.context.XmlContextHolder;
-
-import org.apache.commons.lang3.StringUtils;
+import com.workday.autoparse.xml.utils.StringUtils;
 
 import java.util.List;
 import java.util.Map;

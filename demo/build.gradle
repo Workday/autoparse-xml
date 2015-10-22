@@ -19,6 +19,7 @@ repositories {
 
 dependencies {
     compile 'com.google.guava:guava:18.0'
+    compile 'org.apache.commons:commons-lang3:3.3.2'
 
     compile project(':core')
     apt project(':processor')

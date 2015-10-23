@@ -45,7 +45,7 @@ import javax.tools.Diagnostic;
  * @author nathan.taylor
  * @since 2013-09-30
  */
-public class AutoparseProcessor extends AbstractProcessor {
+public class AutoparseProcessorTmp extends AbstractProcessor {
 
     private Map<String, Collection<TypeElement>> parserMap = Maps.newHashMap();
 

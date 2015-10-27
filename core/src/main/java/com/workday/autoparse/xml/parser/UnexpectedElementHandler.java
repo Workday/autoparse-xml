@@ -7,9 +7,9 @@
 
 package com.workday.autoparse.xml.parser;
 
-import com.google.common.base.Preconditions;
 import com.workday.autoparse.xml.context.XmlContextHolder;
 import com.workday.autoparse.xml.context.XmlParserSettings;
+import com.workday.autoparse.xml.utils.Preconditions;
 
 /**
  * Utiltiy class for handling both unexpected and unknown elements depending on the current {@link
@@ -42,7 +42,7 @@ public class UnexpectedElementHandler {
             XmlStreamReader reader)
             throws UnknownElementException, ParseException {
 
-        Preconditions.checkState(reader.isStartElement(), "Must be at a start element event.");
+        Preconditions.checkArgument(reader.isStartElement(), "Must be at a start element event.");
 
         XmlElementParser<?> parserForUnknownElements = XmlContextHolder.getContext()
                                                                        .getSettings()

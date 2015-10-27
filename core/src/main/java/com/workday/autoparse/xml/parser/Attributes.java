@@ -7,11 +7,11 @@
 
 package com.workday.autoparse.xml.parser;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Maps;
 import com.workday.autoparse.xml.context.XmlContextHolder;
+import com.workday.autoparse.xml.utils.StringTransformer;
 import com.workday.autoparse.xml.utils.StringUtils;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,13 +23,13 @@ public class Attributes {
 
     private final Map<String, String> attributeMap;
     private final String contentString;
-    private final List<Function<String, String>> stringFilters;
+    private final List<StringTransformer> stringTransformers;
 
     public Attributes(XmlStreamReader reader)
             throws ParseException {
-        stringFilters = XmlContextHolder.getContext().getSettings().getStringFilters();
+        stringTransformers = XmlContextHolder.getContext().getSettings().getStringTransformers();
 
-        attributeMap = Maps.newHashMap();
+        attributeMap = new HashMap<>();
         for (int i = 0; i < reader.getAttributeCount(); i++) {
             attributeMap.put(reader.getAttributeName(i), reader.getAttributeValue(i));
         }
@@ -133,9 +133,9 @@ public class Attributes {
 
     private String applyFilters(String original) {
         String result = original;
-        if (!stringFilters.isEmpty()) {
-            for (Function<String, String> filter : stringFilters) {
-                result = filter.apply(result);
+        if (!stringTransformers.isEmpty()) {
+            for (StringTransformer transformer : stringTransformers) {
+                result = transformer.transform(result);
             }
         }
         return result;

@@ -7,11 +7,11 @@
 
 package com.workday.autoparse.xml.codegen;
 
-import com.google.common.collect.Lists;
 import com.squareup.javawriter.JavaWriter;
 import com.workday.autoparse.xml.parser.ParseException;
 import com.workday.autoparse.xml.parser.XmlElementParser;
 import com.workday.autoparse.xml.parser.XmlStreamReader;
+import com.workday.autoparse.xml.utils.CollectionUtils;
 import com.workday.autoparse.xml.utils.StringUtils;
 import com.workday.meta.MetaTypes;
 
@@ -64,7 +64,7 @@ class ParseAttributesMethodWriter {
         parameters.add("reader");
 
         writer.beginMethod("void", "parseAttributes", EnumSet.of(Modifier.PRIVATE), parameters,
-                           Lists.newArrayList(ParseException.class.getSimpleName()));
+                           CollectionUtils.newArrayList(ParseException.class.getSimpleName()));
         writer.emitStatement("Attributes attributes = new Attributes(reader)");
 
         for (Map.Entry<List<String>, Element> entry : attributesAndElements.getAttributes()

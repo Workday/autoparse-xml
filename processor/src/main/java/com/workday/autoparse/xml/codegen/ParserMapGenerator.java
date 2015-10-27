@@ -7,7 +7,6 @@
 
 package com.workday.autoparse.xml.codegen;
 
-import com.google.common.collect.Sets;
 import com.squareup.javawriter.JavaWriter;
 import com.workday.autoparse.xml.context.XmlParserSettingsBuilder;
 import com.workday.autoparse.xml.parser.GeneratedClassNames;
@@ -18,6 +17,7 @@ import com.workday.meta.Modifiers;
 import java.io.IOException;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -84,7 +84,7 @@ class ParserMapGenerator {
     }
 
     private Set<String> getParsableClassImports() {
-        Set<String> results = Sets.newHashSet();
+        Set<String> results = new HashSet<>();
         for (TypeElement element : parseMap.values()) {
             results.add(element.getQualifiedName().toString() + GeneratedClassNames.PARSER_SUFFIX);
         }
@@ -92,7 +92,7 @@ class ParserMapGenerator {
     }
 
     private Set<String> getJavaImports() {
-        Set<String> results = Sets.newHashSet();
+        Set<String> results = new HashSet<>();
         results.add(Map.class.getCanonicalName());
         results.add(HashMap.class.getCanonicalName());
         if (packageElement != null) {

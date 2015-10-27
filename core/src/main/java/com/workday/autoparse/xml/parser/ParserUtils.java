@@ -7,8 +7,8 @@
 
 package com.workday.autoparse.xml.parser;
 
-import com.google.common.base.Preconditions;
 import com.workday.autoparse.xml.context.XmlContextHolder;
+import com.workday.autoparse.xml.utils.Preconditions;
 
 import javax.xml.stream.XMLStreamConstants;
 
@@ -40,7 +40,8 @@ public class ParserUtils {
     public static Object parseCurrentElement(XmlStreamReader reader)
             throws UnknownElementException, UnexpectedChildException, IllegalStateException,
             ParseException {
-        Preconditions.checkState(reader.isStartElement(), "The reader must be at a start element.");
+        Preconditions.checkArgument(reader.isStartElement(),
+                                    "The reader must be at a start element.");
         String name = reader.getName();
         XmlElementParser<?> parser = XmlContextHolder.getContext().getParserMap().get(name);
         if (parser == null) {

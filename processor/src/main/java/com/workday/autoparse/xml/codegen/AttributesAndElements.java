@@ -7,15 +7,15 @@
 
 package com.workday.autoparse.xml.codegen;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import com.workday.autoparse.xml.annotations.XmlAttribute;
 import com.workday.autoparse.xml.annotations.XmlChildElement;
 import com.workday.autoparse.xml.annotations.XmlTextContent;
+import com.workday.autoparse.xml.utils.CollectionUtils;
 import com.workday.meta.MetaTypes;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -36,11 +36,11 @@ class AttributesAndElements {
 
     private final ProcessingEnvironment processingEnv;
     private final TypeElement classElement;
-    private Map<List<String>, Element> attributes = Maps.newHashMap();
-    private Collection<VariableElement> singletonFieldChildren = Sets.newHashSet();
-    private Collection<VariableElement> collectionFieldChildren = Sets.newHashSet();
-    private Collection<ExecutableElement> singletonSetterChildren = Sets.newHashSet();
-    private Collection<ExecutableElement> collectionSetterChildren = Sets.newHashSet();
+    private Map<List<String>, Element> attributes = new HashMap<>();
+    private Collection<VariableElement> singletonFieldChildren = new HashSet<>();
+    private Collection<VariableElement> collectionFieldChildren = new HashSet<>();
+    private Collection<ExecutableElement> singletonSetterChildren = new HashSet<>();
+    private Collection<ExecutableElement> collectionSetterChildren = new HashSet<>();
     private Element textContentElement;
     private MetaTypes metaTypes;
 
@@ -77,8 +77,8 @@ class AttributesAndElements {
 
     private void findAttributesAndElements() {
 
-        Map<String, Element> visitedAttributes = Maps.newHashMap();
-        Map<TypeMirror, Element> visitedElements = Maps.newHashMap();
+        Map<String, Element> visitedAttributes = new HashMap<>();
+        Map<TypeMirror, Element> visitedElements = new HashMap<>();
 
         for (Element e : processingEnv.getElementUtils().getAllMembers(classElement)) {
 
@@ -127,7 +127,7 @@ class AttributesAndElements {
                 visitedAttributes.put(name, e);
             }
         }
-        attributes.put(Lists.newArrayList(annotation.value()), e);
+        attributes.put(CollectionUtils.newArrayList(annotation.value()), e);
     }
 
     private void assignAsTextContent(Element e) {

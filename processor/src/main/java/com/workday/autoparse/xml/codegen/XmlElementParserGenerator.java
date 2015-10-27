@@ -7,9 +7,6 @@
 
 package com.workday.autoparse.xml.codegen;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import com.squareup.javawriter.JavaWriter;
 import com.workday.autoparse.xml.annotations.XmlPostParse;
 import com.workday.autoparse.xml.parser.Attributes;
@@ -21,10 +18,13 @@ import com.workday.autoparse.xml.parser.UnexpectedElementHandler;
 import com.workday.autoparse.xml.parser.UnknownElementException;
 import com.workday.autoparse.xml.parser.XmlElementParser;
 import com.workday.autoparse.xml.parser.XmlStreamReader;
+import com.workday.autoparse.xml.utils.CollectionUtils;
+import com.workday.autoparse.xml.utils.Preconditions;
 import com.workday.meta.MetaTypes;
 
 import java.io.IOException;
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -113,15 +113,14 @@ class XmlElementParserGenerator {
     }
 
     private Set<String> getStandardImports() {
-        Set<String> results = Sets.newHashSet();
+        Set<String> results = new HashSet<>();
         results.add(List.class.getCanonicalName());
-        results.add(Lists.class.getCanonicalName());
         results.add(Attributes.class.getCanonicalName());
+        results.add(Preconditions.class.getCanonicalName());
+        results.add(CollectionUtils.class.getCanonicalName());
         results.add(ParseException.class.getCanonicalName());
         results.add(ParserUtils.class.getCanonicalName());
-        results.add(Preconditions.class.getCanonicalName());
         results.add(Set.class.getCanonicalName());
-        results.add(Sets.class.getCanonicalName());
         results.add(UnexpectedChildException.class.getCanonicalName());
         results.add(UnexpectedElementHandler.class.getCanonicalName());
         results.add(UnknownElementException.class.getCanonicalName());
@@ -135,9 +134,9 @@ class XmlElementParserGenerator {
             throws IOException {
 
         List<String> parameters =
-                Lists.newArrayList(XmlStreamReader.class.getSimpleName(), "reader");
+                CollectionUtils.newArrayList(XmlStreamReader.class.getSimpleName(), "reader");
 
-        List<String> throwsTypes = Lists.newArrayList(
+        List<String> throwsTypes = CollectionUtils.newArrayList(
                 ParseException.class.getSimpleName(),
                 UnknownElementException.class.getSimpleName(),
                 UnexpectedChildException.class.getSimpleName());

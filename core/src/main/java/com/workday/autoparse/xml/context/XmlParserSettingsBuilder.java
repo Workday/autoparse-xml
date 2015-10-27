@@ -7,12 +7,12 @@
 
 package com.workday.autoparse.xml.context;
 
-import com.google.common.base.Function;
 import com.workday.autoparse.xml.annotations.XmlParserPartition;
 import com.workday.autoparse.xml.parser.GeneratedClassNames;
 import com.workday.autoparse.xml.parser.ParserMap;
 import com.workday.autoparse.xml.parser.XmlElementParser;
 import com.workday.autoparse.xml.parser.XmlStreamParser;
+import com.workday.autoparse.xml.utils.StringTransformer;
 import com.workday.meta.ConcreteTypeNames;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class XmlParserSettingsBuilder {
             XmlParserSettings.UnknownElementHandling.PARSE;
     private boolean ignoreUnexpectedChildren;
     private List<String> partitionPackages = new ArrayList<>();
-    private List<Function<String, String>> stringFilters = new ArrayList<>();
+    private List<StringTransformer> stringFilters = new ArrayList<>();
 
     /**
      * Use the given {@link XmlParserSettings.UnknownElementHandling} when parsing. This value
@@ -142,9 +142,9 @@ public class XmlParserSettingsBuilder {
      *
      * @return This SettingsBuilder.
      *
-     * @see #addFilter(Function)
+     * @see #addFilter(StringTransformer)
      */
-    public XmlParserSettingsBuilder addFilters(Collection<Function<String, String>> stringFilters) {
+    public XmlParserSettingsBuilder addFilters(Collection<StringTransformer> stringFilters) {
         this.stringFilters.addAll(stringFilters);
         return this;
     }
@@ -154,9 +154,9 @@ public class XmlParserSettingsBuilder {
      * elements. Filters are applied in the order they are added to all elements parsed.
      * <p/>
      * For example, if you want replace the character "&amp;#xa;" with "\n" you can create a {@link
-     * Function} to do that and add it here.
+     * StringTransformer} to do that and add it here.
      * <pre>
-     *      Function<String, String> newLineFilter = new Function<String, String>() {
+     *      StringTransformer newLineFilter = new StringTransformer() {
      *          {@literal@}Override
      *          public String apply(String input) {
      *              return input.replace('&amp;#xa;', '\n');
@@ -167,7 +167,7 @@ public class XmlParserSettingsBuilder {
      *
      * @return This SettingsBuilder.
      */
-    public XmlParserSettingsBuilder addFilter(Function<String, String> stringFilter) {
+    public XmlParserSettingsBuilder addFilter(StringTransformer stringFilter) {
         stringFilters.add(stringFilter);
         return this;
     }

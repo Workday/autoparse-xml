@@ -7,8 +7,6 @@
 
 package com.workday.autoparse.xml.codegen;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import com.workday.autoparse.xml.annotations.XmlAttribute;
 import com.workday.autoparse.xml.annotations.XmlChildElement;
 import com.workday.autoparse.xml.annotations.XmlElement;
@@ -16,6 +14,7 @@ import com.workday.autoparse.xml.annotations.XmlParserPartition;
 import com.workday.autoparse.xml.annotations.XmlPostParse;
 import com.workday.autoparse.xml.annotations.XmlTextContent;
 import com.workday.autoparse.xml.annotations.XmlUnknownElement;
+import com.workday.autoparse.xml.utils.CollectionUtils;
 import com.workday.autoparse.xml.utils.StringUtils;
 import com.workday.meta.PackageTree;
 
@@ -47,7 +46,7 @@ import javax.tools.Diagnostic;
  */
 public class AutoparseProcessor extends AbstractProcessor {
 
-    private Map<String, Collection<TypeElement>> parserMap = Maps.newHashMap();
+    private Map<String, Collection<TypeElement>> parserMap = new HashMap<>();
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
@@ -85,13 +84,13 @@ public class AutoparseProcessor extends AbstractProcessor {
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
-        return Sets.newHashSet(XmlElement.class.getCanonicalName(),
-                               XmlUnknownElement.class.getCanonicalName(),
-                               XmlPostParse.class.getCanonicalName(),
-                               XmlChildElement.class.getCanonicalName(),
-                               XmlAttribute.class.getCanonicalName(),
-                               XmlTextContent.class.getCanonicalName(),
-                               XmlParserPartition.class.getCanonicalName());
+        return CollectionUtils.newHashSet(XmlElement.class.getCanonicalName(),
+                                          XmlUnknownElement.class.getCanonicalName(),
+                                          XmlPostParse.class.getCanonicalName(),
+                                          XmlChildElement.class.getCanonicalName(),
+                                          XmlAttribute.class.getCanonicalName(),
+                                          XmlTextContent.class.getCanonicalName(),
+                                          XmlParserPartition.class.getCanonicalName());
     }
 
     @Override

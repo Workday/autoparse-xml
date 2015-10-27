@@ -22,7 +22,6 @@ repositories {
 
 dependencies {
     compile project(':core')
-    compile 'com.google.guava:guava:18.0'
     compile 'com.squareup:javawriter:2.5.0'
     compile 'com.workday:metajava:1.0'
 }

@@ -7,7 +7,6 @@
 
 package com.workday.autoparse.xml.codegen;
 
-import com.google.common.collect.Lists;
 import com.squareup.javawriter.JavaWriter;
 import com.workday.autoparse.xml.parser.ParseException;
 import com.workday.autoparse.xml.parser.UnexpectedChildException;
@@ -15,6 +14,9 @@ import com.workday.autoparse.xml.parser.UnexpectedElementHandler;
 import com.workday.autoparse.xml.parser.UnknownElementException;
 import com.workday.autoparse.xml.parser.XmlElementParser;
 import com.workday.autoparse.xml.parser.XmlStreamReader;
+import com.workday.autoparse.xml.utils.CollectionUtils;
+import com.workday.meta.Initializers;
+import com.workday.meta.InvalidTypeException;
 import com.workday.meta.MetaTypes;
 
 import java.io.IOException;
@@ -51,6 +53,7 @@ class ParseChildrenMethodWriter {
     private final ProcessingEnvironment processingEnv;
     private final MetaTypes metaTypes;
     private final TypeElement classElement;
+    private final Initializers initializers;
 
     public ParseChildrenMethodWriter(AttributesAndElements attributesAndElements,
                                      ProcessingEnvironment processingEnv,
@@ -60,6 +63,7 @@ class ParseChildrenMethodWriter {
         this.processingEnv = processingEnv;
         this.metaTypes = metaTypes;
         this.classElement = classElement;
+        initializers = new Initializers(metaTypes);
     }
 
     public void writeParseChildrenMethod(TypeElement classElement, JavaWriter writer)
@@ -71,7 +75,7 @@ class ParseChildrenMethodWriter {
         parameters.add(XmlStreamReader.class.getSimpleName());
         parameters.add("reader");
 
-        List<String> throwsTypes = Lists.newArrayList(
+        List<String> throwsTypes = CollectionUtils.newArrayList(
                 ParseException.class.getSimpleName(),
                 UnknownElementException.class.getSimpleName(),
                 UnexpectedChildException.class.getSimpleName());
@@ -133,8 +137,8 @@ class ParseChildrenMethodWriter {
             DeclaredType parameterType = (DeclaredType) parameter.asType();
             String initializer = null;
             try {
-                initializer = findCollectionInitializer(parameterType);
-            } catch (IllegalArgumentException e) {
+                initializer = initializers.findCollectionInitializer(parameterType);
+            } catch (InvalidTypeException e) {
                 processingEnv.getMessager()
                              .printMessage(Diagnostic.Kind.ERROR, e.getMessage(), collectionSetter);
             }

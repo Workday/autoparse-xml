@@ -7,7 +7,6 @@
 
 package com.workday.autoparse.xml.demo;
 
-import com.google.common.base.Function;
 import com.workday.autoparse.xml.context.XmlParserSettings;
 import com.workday.autoparse.xml.context.XmlParserSettingsBuilder;
 import com.workday.autoparse.xml.demo.duplicatepartition.DuplicatePartitionedModel;
@@ -17,6 +16,7 @@ import com.workday.autoparse.xml.parser.UnexpectedChildException;
 import com.workday.autoparse.xml.parser.UnknownElementException;
 import com.workday.autoparse.xml.parser.XmlStreamParser;
 import com.workday.autoparse.xml.parser.XmlStreamParserFactory;
+import com.workday.autoparse.xml.utils.StringTransformer;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -243,15 +243,15 @@ public class XmlParserTest {
     @Test
     public void testStringFilters()
             throws ParseException, UnexpectedChildException, UnknownElementException {
-        Function<String, String> newLineFilter = new Function<String, String>() {
+        StringTransformer newLineFilter = new StringTransformer() {
             @Override
-            public String apply(String input) {
+            public String transform(String input) {
                 return input.replace("&#xa;", "\n");
             }
         };
-        Function<String, String> hFilter = new Function<String, String>() {
+        StringTransformer hFilter = new StringTransformer() {
             @Override
-            public String apply(String input) {
+            public String transform(String input) {
                 return input.replace('H', 'J');
             }
         };

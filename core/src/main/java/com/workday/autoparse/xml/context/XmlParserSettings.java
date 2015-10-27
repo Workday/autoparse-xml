@@ -7,14 +7,14 @@
 
 package com.workday.autoparse.xml.context;
 
-import com.google.common.base.Function;
-import com.google.common.base.Preconditions;
 import com.workday.autoparse.xml.annotations.XmlElement;
 import com.workday.autoparse.xml.annotations.XmlUnknownElement;
 import com.workday.autoparse.xml.parser.UnknownElementException;
 import com.workday.autoparse.xml.parser.XmlElementParser;
 import com.workday.autoparse.xml.parser.XmlStreamParser;
 import com.workday.autoparse.xml.parser.XmlStreamParserFactory;
+import com.workday.autoparse.xml.utils.Preconditions;
+import com.workday.autoparse.xml.utils.StringTransformer;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -54,7 +54,7 @@ public class XmlParserSettings {
 
     private final UnknownElementHandling unknownElementHandling;
     private final boolean ignoreUnexpectedChildren;
-    private final List<Function<String, String>> stringFilters;
+    private final List<StringTransformer> stringTransformers;
     private final Class<?> unknownElementClass;
     private final XmlElementParser<?> unknownElementParser;
     private final Collection<String> partitionPackages;
@@ -63,14 +63,14 @@ public class XmlParserSettings {
                       boolean ignoreUnexpectedChildren,
                       Collection<String> partitionPackages) {
         this(unknownElementHandling, ignoreUnexpectedChildren, null, null,
-             Collections.<Function<String, String>>emptyList(), partitionPackages);
+             Collections.<StringTransformer>emptyList(), partitionPackages);
     }
 
     XmlParserSettings(UnknownElementHandling unknownElementHandling,
                       boolean ignoreUnexpectedChildren,
                       Class<?> unknownElementClass,
                       XmlElementParser<?> unknownElementParser,
-                      List<Function<String, String>> stringFilters,
+                      List<StringTransformer> stringTransformers,
                       Collection<String> partitionPackages) {
         Preconditions.checkArgument(partitionPackages.size() > 0,
                                     "You must declare at least one partition package.");
@@ -79,7 +79,7 @@ public class XmlParserSettings {
         this.ignoreUnexpectedChildren = ignoreUnexpectedChildren;
         this.unknownElementClass = unknownElementClass;
         this.unknownElementParser = unknownElementParser;
-        this.stringFilters = stringFilters;
+        this.stringTransformers = stringTransformers;
         this.partitionPackages = partitionPackages;
     }
 
@@ -99,8 +99,8 @@ public class XmlParserSettings {
         return unknownElementParser;
     }
 
-    public List<Function<String, String>> getStringFilters() {
-        return stringFilters;
+    public List<StringTransformer> getStringTransformers() {
+        return stringTransformers;
     }
 
     Collection<String> getPartitionPackages() {

@@ -1,0 +1,6 @@
+<Root_Model>
+    <Alternate_Attribute_Model int1="1"/>
+    <Alternate_Attribute_Model int2="2"/>
+    <Alternate_Attribute_Model int3="3"/>
+    <Alternate_Attribute_Model int3="3" int2="2"/>
+</Root_Model>

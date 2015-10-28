@@ -1,0 +1,27 @@
+/*
+ * Copyright 2015 Workday, Inc.
+ *
+ * This software is available under the MIT license.
+ * Please see the LICENSE.txt file in this project.
+ */
+
+apply plugin: 'java'
+apply from: file('../gradle/gradle-mvn-push.gradle')
+apply from: file('../gradle/checkstyle.gradle')
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+archivesBaseName = POM_ARTIFACT_ID
+group = GROUP
+version = VERSION_NAME
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':core')
+    compile 'com.squareup:javawriter:2.5.0'
+    compile 'com.workday:metajava:1.0'
+}

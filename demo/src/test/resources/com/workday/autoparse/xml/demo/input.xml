@@ -1,0 +1,29 @@
+<wcl:Demo_Model xmlns:wcl="http://www.workday.com/ns/user-interface/2.0"
+                My_Big_Decimal="0.5"
+                My_Big_Integer="1"
+                wcl:My_Primitive_Boolean="1"
+                My_Boxed_Boolean="1"
+                My_Primitive_Byte="2"
+                My_Boxed_Byte="4"
+                My_Primitive_Char="a"
+                My_Boxed_Char="b"
+                My_Primitive_Double="5.5"
+                My_Boxed_Double="6.5"
+                My_Primitive_Float="7.5"
+                My_Boxed_Float="8.5"
+                My_Primitive_Int="9"
+                My_Boxed_Int="10"
+                My_Primitive_Long="11"
+                My_Boxed_Long="12"
+                My_Primitive_Short="13"
+                My_Boxed_Short="15"
+                My_String="Bob"
+                My_Unknown="Should not be parsed">
+
+    <Child_Model My_String="My_String_Value" wcl:My_Int="5"/>
+
+    <Repeated_Child_Model value="a">I am some text.</Repeated_Child_Model>
+    <Repeated_Child_Model value="b"/>
+    <Repeated_Child_Model value="c"/>
+
+</wcl:Demo_Model>

@@ -1,0 +1,6 @@
+<Setter_Model int="5">
+    Hello
+    <Child_Model/>
+    <Repeated_Child_Model/>
+    <Repeated_Child_Model/>
+</Setter_Model>

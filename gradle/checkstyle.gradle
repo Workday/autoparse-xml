@@ -9,5 +9,5 @@ apply plugin: 'checkstyle'
 
 checkstyle {
     configFile = new File(rootDir, 'checkstyle.xml')
-    toolVersion = '6.11.2'
+    toolVersion = '6.12'
 }

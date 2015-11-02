@@ -39,8 +39,7 @@
         <!-- Checks for Javadoc comments.                     -->
         <!-- See http://checkstyle.sf.net/config_javadoc.html -->
         <module name="JavadocStyle"/>
-        <!-- This errors out in the javadoc of XmlParserSettingsBuilder.addFilter(Function)-->
-        <!--<module name="NonEmptyAtclauseDescription"/>-->
+        <module name="NonEmptyAtclauseDescription"/>
 
         <!-- Checks for Naming Conventions.                  -->
         <!-- See http://checkstyle.sf.net/config_naming.html -->
@@ -94,8 +93,7 @@
         <module name="ParenPad"/>
         <module name="TypecastParenPad"/>
         <module name="WhitespaceAfter"/>
-        <!-- Uncomment when https://github.com/checkstyle/checkstyle/issues/2423 is fixed -->
-        <!--<module name="WhitespaceAround">-->
+		<module name="WhitespaceAround"/>
 
         <!-- Modifier Checks                                    -->
         <!-- See http://checkstyle.sf.net/config_modifiers.html -->

@@ -12,7 +12,7 @@ Learn how to use Autoparse XML in the [wiki](https://github.com/workday/autopars
 
 Add the following lines to your `build.gradle` file, replacing `$autoparse_xml_version` with latest version from Maven Central.
 
-```
+```gradle
 repositories {
     mavenCentral()
 }
@@ -25,7 +25,7 @@ dependencies {
 
 Note that if you use the [android-apt plugin](https://bitbucket.org/hvisser/android-apt) or the [kotlin-android plugin](https://kotlinlang.org/docs/reference/using-gradle.html), you may use `apt` or `kapt` respectively instead of `compile` for `autoparse-xml-processor`, e.g.
 
-```
+```gradle
 apt "com.workday:autoparse-xml-processor:$autoparse_xml_version"
 ```
 In fact, it is highly recommended that you use `apt` or `kapt` as this will get rid of some "invalid package" and related warnings.

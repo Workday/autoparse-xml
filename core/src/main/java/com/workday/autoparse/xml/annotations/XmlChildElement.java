@@ -28,7 +28,7 @@ import java.lang.annotation.Target;
  * @author nathan.taylor
  * @since 2013-9-19
  */
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.CLASS)
 @Target({ElementType.FIELD, ElementType.METHOD})
 public @interface XmlChildElement {
 

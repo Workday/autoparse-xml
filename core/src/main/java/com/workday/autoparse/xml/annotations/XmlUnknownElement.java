@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
  * @author nathan.taylor
  * @since 2014-7-8
  */
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.CLASS)
 @Target(ElementType.TYPE)
 public @interface XmlUnknownElement {
 

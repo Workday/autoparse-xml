@@ -20,7 +20,7 @@ import java.lang.annotation.Target;
  * @author nathan.taylor
  * @since 2013-10-16
  */
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.CLASS)
 @Target(ElementType.METHOD)
 public @interface XmlPostParse {
 }

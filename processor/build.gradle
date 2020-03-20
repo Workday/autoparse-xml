@@ -16,10 +16,6 @@ archivesBaseName = POM_ARTIFACT_ID
 group = GROUP
 version = VERSION_NAME
 
-repositories {
-	jcenter()
-}
-
 dependencies {
 	implementation project(deps.internal.core)
 	implementation deps.external.javaWriter

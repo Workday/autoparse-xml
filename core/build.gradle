@@ -6,15 +6,11 @@ apply from: file('../gradle/checkstyle.gradle')
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-repositories {
-	jcenter()
-}
-
 archivesBaseName = POM_ARTIFACT_ID
 group = GROUP
 version = VERSION_NAME
 
 dependencies {
 	implementation deps.external.metaJava
-	provided('org.ogce:xpp3:1.1.6')
+	compileOnly('org.ogce:xpp3:1.1.6')
 }

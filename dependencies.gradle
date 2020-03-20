@@ -1,47 +1,47 @@
 def versions = [
-	androidGradlePluginVersion : '3.6.0',
-	robolectricVersion  : '4.0.2',
-	guavaVersion  :  '18.0',
-	apacheCommonsVersion  :  '3.3.2',
+	androidGradlePluginVersion: '3.6.0',
+	robolectricVersion        : '4.0.2',
+	guavaVersion              : '18.0',
+	apacheCommonsVersion      : '3.3.2',
 ]
 
 def buildConfig = [
-	compileSdkVersion   : 28,
-	minSdkVersion       : 21,
-	targetSdkVersion    : 28,
-	buildToolsVersion   : '28.0.3',
-	javaVersion         : '1.8',
+	compileSdkVersion: 28,
+	minSdkVersion    : 21,
+	targetSdkVersion : 28,
+	buildToolsVersion: '28.0.3',
+	javaVersion      : '1.8',
 ]
 
 def build = [
-	androidGradlePlugin : "com.android.tools.build:gradle:${versions.androidGradlePluginVersion}",
+	androidGradlePlugin: "com.android.tools.build:gradle:${versions.androidGradlePluginVersion}",
 ]
 
 def internal = [
-	core                : ':core',
+	core: ':core',
 ]
 
 def external = [
-	guava               : "com.google.guava:guava:${versions.guavaVersion}",
-	apacheCommons       : "org.apache.commons:commons-lang3:${versions.apacheCommonsVersion}",
-	metaJava            : 'com.workday:metajava:1.0',
-	javaWriter          : 'com.squareup:javawriter:2.5.0',
+	guava        : "com.google.guava:guava:${versions.guavaVersion}",
+	apacheCommons: "org.apache.commons:commons-lang3:${versions.apacheCommonsVersion}",
+	metaJava     : 'com.workday:metajava:1.0',
+	javaWriter   : 'com.squareup:javawriter:2.5.0',
 ]
 
 def test = [
-	junit               : 'junit:junit:4.12',
-	robolectric         : "org.robolectric:robolectric:${versions.robolectricVersion}",
+	junit      : 'junit:junit:4.12',
+	robolectric: "org.robolectric:robolectric:${versions.robolectricVersion}",
 ]
 
 def annotations = [
-	processor           : ":processor"
+	processor: ":processor"
 ]
 
 ext.deps = [
-	"build"       : build,
-	"buildConfig" : buildConfig,
-	"internal"    : internal,
-	"external"    : external,
-	"test"        : test,
-	"annotations" : annotations,
+	"build"      : build,
+	"buildConfig": buildConfig,
+	"internal"   : internal,
+	"external"   : external,
+	"test"       : test,
+	"annotations": annotations,
 ]

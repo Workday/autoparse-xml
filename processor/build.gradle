@@ -17,11 +17,11 @@ group = GROUP
 version = VERSION_NAME
 
 repositories {
-    jcenter()
+	jcenter()
 }
 
 dependencies {
-    implementation project(deps.internal.core)
+	implementation project(deps.internal.core)
 	implementation deps.external.javaWriter
 	implementation deps.external.metaJava
 }

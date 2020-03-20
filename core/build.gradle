@@ -3,18 +3,14 @@ apply from: file('../gradle/gradle-mvn-push.gradle')
 apply from: file('../gradle/provided-configuration.gradle')
 apply from: file('../gradle/checkstyle.gradle')
 
-sourceCompatibility = JavaVersion.VERSION_1_7
-targetCompatibility = JavaVersion.VERSION_1_7
-
-repositories {
-    mavenCentral()
-}
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 archivesBaseName = POM_ARTIFACT_ID
 group = GROUP
 version = VERSION_NAME
 
 dependencies {
-    compile 'com.workday:metajava:1.0'
-    provided('org.ogce:xpp3:1.1.6')
+	implementation deps.external.metaJava
+	compileOnly('org.ogce:xpp3:1.1.6')
 }

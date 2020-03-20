@@ -9,19 +9,15 @@ apply plugin: 'java'
 apply from: file('../gradle/gradle-mvn-push.gradle')
 apply from: file('../gradle/checkstyle.gradle')
 
-sourceCompatibility = JavaVersion.VERSION_1_7
-targetCompatibility = JavaVersion.VERSION_1_7
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 archivesBaseName = POM_ARTIFACT_ID
 group = GROUP
 version = VERSION_NAME
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    compile project(':core')
-    compile 'com.squareup:javawriter:2.5.0'
-    compile 'com.workday:metajava:1.0'
+	implementation project(deps.internal.core)
+	implementation deps.external.javaWriter
+	implementation deps.external.metaJava
 }

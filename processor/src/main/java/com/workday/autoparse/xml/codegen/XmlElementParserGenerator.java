@@ -71,7 +71,7 @@ class XmlElementParserGenerator {
 
         String parserName =
                 classElement.getQualifiedName().toString() + GeneratedClassNames.PARSER_SUFFIX;
-        JavaFileObject sourceFile = processingEnv.getFiler().createSourceFile(parserName);
+        JavaFileObject sourceFile = processingEnv.getFiler().createSourceFile(parserName, classElement);
 
         JavaWriter writer = new JavaWriter(sourceFile.openWriter());
         writer.emitPackage(processingEnv.getElementUtils()

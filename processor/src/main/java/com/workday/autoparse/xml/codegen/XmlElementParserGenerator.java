@@ -8,7 +8,9 @@
 package com.workday.autoparse.xml.codegen;
 
 import com.squareup.javawriter.JavaWriter;
+import com.workday.autoparse.xml.annotations.XmlElement;
 import com.workday.autoparse.xml.annotations.XmlPostParse;
+import com.workday.autoparse.xml.annotations.codegen.XmlParser;
 import com.workday.autoparse.xml.parser.Attributes;
 import com.workday.autoparse.xml.parser.GeneratedClassNames;
 import com.workday.autoparse.xml.parser.ParseException;
@@ -23,6 +25,7 @@ import com.workday.autoparse.xml.utils.Preconditions;
 import com.workday.meta.MetaTypes;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
@@ -81,6 +84,14 @@ class XmlElementParserGenerator {
         writer.emitImports(getStandardImports());
         writer.emitEmptyLine();
 
+        final XmlElement xmlElementAnnotation = classElement.getAnnotation(XmlElement.class);
+        if (xmlElementAnnotation != null) {
+            final Object[] values = Arrays.stream(xmlElementAnnotation.value())
+                                          .map(JavaWriter::stringLiteral)
+                                          .toArray();
+            writer.emitAnnotation("XmlParser", values);
+        }
+
         String xmlElementParserName =
                 JavaWriter.type(XmlElementParser.class, classElement.getSimpleName().toString());
         writer.beginType(parserName,
@@ -126,6 +137,7 @@ class XmlElementParserGenerator {
         results.add(UnknownElementException.class.getCanonicalName());
         results.add(XmlElementParser.class.getCanonicalName());
         results.add(XmlStreamReader.class.getCanonicalName());
+        results.add(XmlParser.class.getCanonicalName());
         return results;
 
     }

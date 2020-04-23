@@ -1,1 +1,2 @@
 com.workday.autoparse.xml.codegen.AutoparseProcessor,isolating
+com.workday.autoparse.xml.codegen.XmlElementParserMapProcessor,aggregating

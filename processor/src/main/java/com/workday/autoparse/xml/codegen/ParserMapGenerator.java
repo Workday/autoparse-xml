@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
@@ -56,7 +57,7 @@ class ParserMapGenerator {
         String qualifiedClassName = GeneratedClassNames.getQualifiedName(packageName,
                                                                          parserMapClassName);
 
-        JavaFileObject sourceFile = processingEnv.getFiler().createSourceFile(qualifiedClassName);
+        JavaFileObject sourceFile = processingEnv.getFiler().createSourceFile(qualifiedClassName, parseMap.values().toArray(new Element[parseMap.size()]));
 
         JavaWriter writer = new JavaWriter(sourceFile.openWriter());
         writer.emitPackage(packageName);
@@ -86,7 +87,7 @@ class ParserMapGenerator {
     private Set<String> getParsableClassImports() {
         Set<String> results = new HashSet<>();
         for (TypeElement element : parseMap.values()) {
-            results.add(element.getQualifiedName().toString() + GeneratedClassNames.PARSER_SUFFIX);
+            results.add(element.getQualifiedName().toString());
         }
         return results;
     }
@@ -110,8 +111,7 @@ class ParserMapGenerator {
         writer.beginInitializer(true);
         for (Map.Entry<String, TypeElement> entry : parseMap.entrySet()) {
             writer.emitStatement("MAP.put(\"%s\", %s.INSTANCE)", entry.getKey(),
-                                 entry.getValue().getSimpleName()
-                                         + GeneratedClassNames.PARSER_SUFFIX);
+                                 entry.getValue().getSimpleName());
         }
         writer.endInitializer();
     }

@@ -50,14 +50,15 @@ class ParserMapGenerator {
 
     public void generateParseMap() throws IOException {
         String packageName = packageElement != null
-                             ? packageElement.getQualifiedName().toString()
-                             : XmlParserSettingsBuilder.DEFAULT_PACKAGE;
+                ? packageElement.getQualifiedName().toString()
+                : XmlParserSettingsBuilder.DEFAULT_PACKAGE;
 
         String parserMapClassName = GeneratedClassNames.CLASS_GENERATED_PARSER_MAP;
         String qualifiedClassName = GeneratedClassNames.getQualifiedName(packageName,
-                                                                         parserMapClassName);
+                parserMapClassName);
 
-        JavaFileObject sourceFile = processingEnv.getFiler().createSourceFile(qualifiedClassName, parseMap.values().toArray(new Element[parseMap.size()]));
+        JavaFileObject sourceFile = processingEnv.getFiler().createSourceFile(qualifiedClassName,
+                parseMap.values().toArray(new Element[parseMap.size()]));
 
         JavaWriter writer = new JavaWriter(sourceFile.openWriter());
         writer.emitPackage(packageName);
@@ -68,10 +69,10 @@ class ParserMapGenerator {
         writer.emitEmptyLine();
 
         writer.beginType(GeneratedClassNames.CLASS_GENERATED_PARSER_MAP,
-                         "class",
-                         EnumSet.of(Modifier.PUBLIC, Modifier.FINAL),
-                         null,
-                         ParserMap.class.getCanonicalName());
+                "class",
+                EnumSet.of(Modifier.PUBLIC, Modifier.FINAL),
+                null,
+                ParserMap.class.getCanonicalName());
         writer.emitEmptyLine();
 
         writeMapField(writer);
@@ -105,13 +106,13 @@ class ParserMapGenerator {
 
     private void writeMapField(JavaWriter writer) throws IOException {
         writer.emitField(MAP_TYPE, "MAP", Modifiers.PRIVATE_CONSTANT,
-                         String.format("new HashMap<String, %s<?>>()",
-                                       XmlElementParser.class.getSimpleName()));
+                String.format("new HashMap<String, %s<?>>()",
+                        XmlElementParser.class.getSimpleName()));
 
         writer.beginInitializer(true);
         for (Map.Entry<String, TypeElement> entry : parseMap.entrySet()) {
             writer.emitStatement("MAP.put(\"%s\", %s.INSTANCE)", entry.getKey(),
-                                 entry.getValue().getSimpleName());
+                    entry.getValue().getSimpleName());
         }
         writer.endInitializer();
     }
@@ -120,10 +121,10 @@ class ParserMapGenerator {
 
         writer.emitAnnotation(Override.class);
         writer.beginMethod(JavaWriter.type(XmlElementParser.class, "?"),
-                           "get",
-                           EnumSet.of(Modifier.PUBLIC),
-                           "String",
-                           "name");
+                "get",
+                EnumSet.of(Modifier.PUBLIC),
+                "String",
+                "name");
         writer.emitStatement("return MAP.get(name)");
         writer.endMethod();
     }

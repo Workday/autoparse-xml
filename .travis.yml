@@ -2,7 +2,9 @@ language: android
 
 android:
   components:
-    - android-28
-    - build-tools-28.0.3
+	- android-28
+	- build-tools-28.0.3
+licenses:
+	- 'android-sdk-license-.+'
 
 script: ./gradlew assemble check

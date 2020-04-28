@@ -63,9 +63,9 @@ class XmlElementParserGenerator {
                 new ParseAttributesMethodWriter(attributesAndElements, processingEnv, metaTypes);
         parseChildrenMethodWriter =
                 new ParseChildrenMethodWriter(attributesAndElements,
-                                              processingEnv,
-                                              metaTypes,
-                                              classElement);
+                        processingEnv,
+                        metaTypes,
+                        classElement);
 
     }
 
@@ -74,37 +74,38 @@ class XmlElementParserGenerator {
 
         String parserName =
                 classElement.getQualifiedName().toString() + GeneratedClassNames.PARSER_SUFFIX;
-        JavaFileObject sourceFile = processingEnv.getFiler().createSourceFile(parserName, classElement);
+        JavaFileObject sourceFile = processingEnv.getFiler().createSourceFile(parserName,
+                classElement);
 
         JavaWriter writer = new JavaWriter(sourceFile.openWriter());
         writer.emitPackage(processingEnv.getElementUtils()
-                                        .getPackageOf(classElement)
-                                        .getQualifiedName()
-                                        .toString());
+                .getPackageOf(classElement)
+                .getQualifiedName()
+                .toString());
         writer.emitImports(getStandardImports());
         writer.emitEmptyLine();
 
         final XmlElement xmlElementAnnotation = classElement.getAnnotation(XmlElement.class);
         if (xmlElementAnnotation != null) {
             final Object[] values = Arrays.stream(xmlElementAnnotation.value())
-                                          .map(JavaWriter::stringLiteral)
-                                          .toArray();
+                    .map(JavaWriter::stringLiteral)
+                    .toArray();
             writer.emitAnnotation("XmlParser", values);
         }
 
         String xmlElementParserName =
                 JavaWriter.type(XmlElementParser.class, classElement.getSimpleName().toString());
         writer.beginType(parserName,
-                         "class",
-                         EnumSet.of(Modifier.PUBLIC, Modifier.FINAL),
-                         null,
-                         xmlElementParserName);
+                "class",
+                EnumSet.of(Modifier.PUBLIC, Modifier.FINAL),
+                null,
+                xmlElementParserName);
         writer.emitEmptyLine();
 
         writer.emitField(parserName,
-                         "INSTANCE",
-                         EnumSet.of(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL),
-                         String.format("new %s()", writer.compressType(parserName)));
+                "INSTANCE",
+                EnumSet.of(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL),
+                String.format("new %s()", writer.compressType(parserName)));
         writer.emitEmptyLine();
 
         // Constructor
@@ -155,14 +156,14 @@ class XmlElementParserGenerator {
 
         writer.emitAnnotation(Override.class);
         writer.beginMethod(classElement.getSimpleName().toString(),
-                           "parseElement",
-                           EnumSet.of(Modifier.PUBLIC),
-                           parameters,
-                           throwsTypes);
+                "parseElement",
+                EnumSet.of(Modifier.PUBLIC),
+                parameters,
+                throwsTypes);
 
         writer.emitStatement("%s object = new %s()",
-                             classElement.getSimpleName(),
-                             classElement.getSimpleName());
+                classElement.getSimpleName(),
+                classElement.getSimpleName());
         writer.emitStatement("parseAttributes(object, reader)");
         writer.emitStatement("parseChildren(object, reader)");
 
@@ -194,9 +195,9 @@ class XmlElementParserGenerator {
                 if (result != null) {
                     String errorMessage =
                             String.format("Found multiple methods annotated with @%s",
-                                          XmlPostParse.class.getSimpleName());
+                                    XmlPostParse.class.getSimpleName());
                     processingEnv.getMessager()
-                                 .printMessage(Diagnostic.Kind.ERROR, errorMessage, e);
+                            .printMessage(Diagnostic.Kind.ERROR, errorMessage, e);
                 }
 
                 result = (ExecutableElement) e;
@@ -204,17 +205,17 @@ class XmlElementParserGenerator {
                 if (result.getParameters().size() > 0) {
                     String errorMessage =
                             String.format("A method annotated with @%s must take no parameters.",
-                                          XmlPostParse.class.getSimpleName());
+                                    XmlPostParse.class.getSimpleName());
                     processingEnv.getMessager()
-                                 .printMessage(Diagnostic.Kind.ERROR, errorMessage, result);
+                            .printMessage(Diagnostic.Kind.ERROR, errorMessage, result);
                 }
 
                 if (result.getModifiers().contains(Modifier.PRIVATE)) {
                     String errorMessage =
                             String.format("A method annotated with @%s must be non-private.",
-                                          XmlPostParse.class.getSimpleName());
+                                    XmlPostParse.class.getSimpleName());
                     processingEnv.getMessager()
-                                 .printMessage(Diagnostic.Kind.ERROR, errorMessage, result);
+                            .printMessage(Diagnostic.Kind.ERROR, errorMessage, result);
                 }
             }
         }

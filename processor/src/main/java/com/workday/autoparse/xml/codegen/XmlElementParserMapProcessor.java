@@ -69,10 +69,10 @@ public class XmlElementParserMapProcessor extends AbstractProcessor {
 
         for (PackageElement packageElement : partitionPackageElements) {
             final Set<Element> parserElements = packageElement.getEnclosedElements()
-                                                       .stream()
-                                                       .filter(element1 -> element1.getKind() == ElementKind.CLASS)
-                                                       .filter(element1 -> element1.getAnnotation(XmlParser.class) != null)
-                                                       .collect(Collectors.toSet());
+                    .stream()
+                    .filter(element1 -> element1.getKind() == ElementKind.CLASS)
+                    .filter(element1 -> element1.getAnnotation(XmlParser.class) != null)
+                    .collect(Collectors.toSet());
             for (Element parserElement : parserElements) {
                 addClassToParseMap((TypeElement) parserElement);
             }
@@ -94,8 +94,8 @@ public class XmlElementParserMapProcessor extends AbstractProcessor {
     @Override
     public Set<String> getSupportedAnnotationTypes() {
         return CollectionUtils.newHashSet(XmlParserPartition.class.getCanonicalName(),
-                                          XmlElement.class.getCanonicalName(),
-                                          XmlParser.class.getCanonicalName());
+                XmlElement.class.getCanonicalName(),
+                XmlParser.class.getCanonicalName());
     }
 
     @Override
@@ -147,17 +147,17 @@ public class XmlElementParserMapProcessor extends AbstractProcessor {
                 if (previousValue != null) {
                     String packageString = matchingPackage != null
                             ? String.format(Locale.US,
-                                            "partition under package '%s'",
-                                            matchingPackage.getQualifiedName())
+                            "partition under package '%s'",
+                            matchingPackage.getQualifiedName())
                             : "the default partition";
                     String errorMessage =
                             String.format("%s and %s both tried to map to tag name \"%s\" in %s.",
-                                          element.getQualifiedName(),
-                                          previousValue.getQualifiedName(),
-                                          parseKey,
-                                          packageString);
+                                    element.getQualifiedName(),
+                                    previousValue.getQualifiedName(),
+                                    parseKey,
+                                    packageString);
                     processingEnv.getMessager()
-                                 .printMessage(Diagnostic.Kind.ERROR, errorMessage, element);
+                            .printMessage(Diagnostic.Kind.ERROR, errorMessage, element);
                 }
             }
         }
